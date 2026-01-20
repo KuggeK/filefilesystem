@@ -8,6 +8,7 @@ The project comes with a very simple, thrown-together CLI program, which can be 
 
 ## Filesystem structure
 ![Filesystem structure](./ffsys-structure.jpg)
+
 The picture above represents the structure of a single FFSys-file, which is largely the same as the basic structure of ext2. The FFSys-file is divided into equal sized block, of which the first is called the superblock, that contains metadata about the filesystem. Then the second and third blocks are reserved for the free i-node bitmap and the free data block bitmap, respectively. After that come the i-nodes and the data blocks themselves. I-nodes (one per file) contain file metadata, and the data blocks contain file contents.
 
 The maximum size of a single file is limited, based on the filesystem's block size. Right now, i-nodes are configured with 15 static data blocks and if needed, 5 pointers to "dynamically" reserved blocks that contain further addresses to the file's data blocks. With a block size of 1024, one file has the maximum capacity of:
